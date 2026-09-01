@@ -234,408 +234,429 @@
 </head>
 <body class="antialiased">
 
-    <!-- MAIN BACKGROUND MUSIC -->
-    <audio id="main-bg-music" src="https://rasmalai-zeta.vercel.app/song.mp3" loop preload="auto"></audio>
-
-    <!-- SCREEN 1: PASSCODE -->
-    <div id="screen-1" class="screen active flex-col lg:flex-row items-center justify-between p-0 min-h-screen relative overflow-hidden bg-[var(--primary-red)]">
-        
-        <!-- Left Side: White Background with Red Hearts -->
-        <div class="hidden lg:block absolute left-[8%] top-0 bottom-0 w-[30%] max-w-[420px] shadow-2xl z-0" style="background-image: url('https://daisifystudio.my.canva.site/_assets/media/2775b866c46061621f540e0fbd2ee7fb.jpg'); background-size: cover; background-position: center; background-repeat: repeat;"></div>
-        
-        <!-- Left half: Frame & Photo overlaying the white pattern -->
-        <div class="w-full lg:w-1/2 h-[50vh] lg:h-screen flex items-center justify-center relative z-10 pt-10 lg:pt-0 pl-0 lg:pl-[15%]">
-            <div class="block lg:hidden absolute inset-0 opacity-40 z-0" style="background-image: url('https://daisifystudio.my.canva.site/_assets/media/2775b866c46061621f540e0fbd2ee7fb.jpg'); background-size: cover;"></div>
-             
-            <div class="relative w-[90vw] lg:w-[50vw] max-w-[700px] aspect-square flex items-center justify-center floating z-10">
-                <img src="night.png" class="w-full h-full object-contain drop-shadow-2xl z-10" alt="Us at Night" onerror="this.src='heart.png'">
-            </div>
-        </div>
-
-        <!-- Right half: Passcode Input Screen -->
-        <div class="w-full lg:w-1/2 flex flex-col items-center justify-center z-20 pb-12 lg:pb-0 pr-0 lg:pr-[12%]">
-            
-            <svg class="w-10 h-10 mb-2 text-[#F6DFDF]" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+    <!-- MOBILE / TABLET WARNING OVERLAY (Visible only on small screens) -->
+    <div class="fixed inset-0 z-[9999] bg-[var(--primary-red)] flex flex-col items-center justify-center p-8 text-center text-white lg:hidden">
+        <div class="animate-bounce mb-8">
+            <svg class="w-24 h-24 text-white opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
             </svg>
-            <h2 class="text-3xl font-bold mb-6 tracking-wide text-[#F6DFDF]">Enter passcode</h2>
-            
-            <!-- Passcode Inputs (Squares) -->
-            <div class="flex gap-3 mb-10">
-                <div class="dot" id="dot-1"></div>
-                <div class="dot" id="dot-2"></div>
-                <div class="dot" id="dot-3"></div>
-                <div class="dot" id="dot-4"></div>
-            </div>
-
-            <!-- Authentic Keypad Grid -->
-            <div class="grid grid-cols-3 gap-x-6 gap-y-5 mb-8">
-                <button onclick="pressKey('1')" class="keypad-btn"><u>1</u></button>
-                <button onclick="pressKey('2')" class="keypad-btn"><u>2</u></button>
-                <button onclick="pressKey('3')" class="keypad-btn"><u>3</u></button>
-                <button onclick="pressKey('4')" class="keypad-btn"><u>4</u></button>
-                <button onclick="pressKey('5')" class="keypad-btn"><u>5</u></button>
-                <button onclick="pressKey('6')" class="keypad-btn"><u>6</u></button>
-                <button onclick="pressKey('7')" class="keypad-btn"><u>7</u></button>
-                <button onclick="pressKey('8')" class="keypad-btn"><u>8</u></button>
-                <button onclick="pressKey('9')" class="keypad-btn"><u>9</u></button>
-                <button onclick="pressKey('*')" class="keypad-btn pt-3 text-5xl">*</button>
-                <button onclick="pressKey('0')" class="keypad-btn"><u>0</u></button>
-                <button onclick="pressKey('#')" class="keypad-btn text-4xl">#</button>
-            </div>
-            
-            <button onclick="checkPasscode()" class="bg-[#F6DFDF] text-[var(--primary-red)] px-14 py-3 rounded-full text-3xl font-bold shadow-lg hover:bg-white transition hover:scale-105">Enter</button>
+        </div>
+        <h1 class="font-bold text-3xl md:text-5xl mb-4 tracking-wide font-sans">Laptop Required</h1>
+        <p class="text-xl md:text-3xl font-medium text-[#F8DE9B] mb-8 handwriting tracking-widest max-w-md leading-relaxed">
+            Please open this on your laptop and use earphones for the best experience! ❤️
+        </p>
+        <div class="flex items-center gap-3 bg-white/20 px-8 py-4 rounded-full backdrop-blur-sm shadow-lg">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6a2 2 0 012-2h2a2 2 0 012 2v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2V6a2 2 0 012-2h2a2 2 0 012 2m0 13c0 1.105 1.343 2 3 2s3-.895 3-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2"></path></svg>
+            <span class="text-lg font-bold tracking-wide">Use Earphones 🎧</span>
         </div>
     </div>
 
-    <!-- SCREEN 2: WRONG PASSCODE WITH SPEECH RECOGNITION -->
-    <div id="screen-2" class="screen flex-col items-center justify-center p-6 text-center relative">
-        <h1 class="pixel-font text-2xl md:text-3xl text-white mb-6">wrong passcode :[</h1>
+    <!-- MAIN APP CONTENT (Hidden on small screens via lg:block wrapper) -->
+    <div class="hidden lg:block w-full">
         
-        <div class="relative mb-6">
-            <h2 class="text-5xl md:text-7xl font-black text-white border-8 border-white p-6 rounded-2xl opacity-80 tracking-widest" style="border-style: dashed;">LOCKED</h2>
-        </div>
+        <!-- MAIN BACKGROUND MUSIC -->
+        <audio id="main-bg-music" src="https://rasmalai-zeta.vercel.app/song.mp3" loop preload="auto"></audio>
 
-        <p class="handwriting text-3xl md:text-4xl text-[#F8DE9B] mb-8">Say the magic words to unlock...<br>"I love you"</p>
+        <!-- SCREEN 1: PASSCODE -->
+        <div id="screen-1" class="screen active flex-col lg:flex-row items-center justify-between p-0 min-h-screen relative overflow-hidden bg-[var(--primary-red)]">
+            
+            <!-- Left Side: White Background with Red Hearts -->
+            <div class="hidden lg:block absolute left-[8%] top-0 bottom-0 w-[30%] max-w-[420px] shadow-2xl z-0" style="background-image: url('https://daisifystudio.my.canva.site/_assets/media/2775b866c46061621f540e0fbd2ee7fb.jpg'); background-size: cover; background-position: center; background-repeat: repeat;"></div>
+            
+            <!-- Left half: Frame & Photo overlaying the white pattern -->
+            <div class="w-full lg:w-1/2 h-[50vh] lg:h-screen flex items-center justify-center relative z-10 pt-10 lg:pt-0 pl-0 lg:pl-[15%]">
+                <div class="block lg:hidden absolute inset-0 opacity-40 z-0" style="background-image: url('https://daisifystudio.my.canva.site/_assets/media/2775b866c46061621f540e0fbd2ee7fb.jpg'); background-size: cover;"></div>
+                 
+                <div class="relative w-[90vw] lg:w-[50vw] max-w-[700px] aspect-square flex items-center justify-center floating z-10">
+                    <img src="night.png" class="w-full h-full object-contain drop-shadow-2xl z-10" alt="Us at Night" onerror="this.src='heart.png'">
+                </div>
+            </div>
 
-        <button onclick="startListening()" class="bg-[#F8DE9B] text-[var(--primary-red)] px-8 py-3 rounded-full font-bold text-2xl hover:scale-105 transition shadow-xl mb-6 flex items-center gap-3 mx-auto">
-            <svg class="w-6 h-6 animate-pulse" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd"></path></svg>
-            Tap to Speak
-        </button>
+            <!-- Right half: Passcode Input Screen -->
+            <div class="w-full lg:w-1/2 flex flex-col items-center justify-center z-20 pb-12 lg:pb-0 pr-0 lg:pr-[12%]">
+                
+                <svg class="w-10 h-10 mb-2 text-[#F6DFDF]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                </svg>
+                <h2 class="text-3xl font-bold mb-6 tracking-wide text-[#F6DFDF]">Enter passcode</h2>
+                
+                <!-- Passcode Inputs (Squares) -->
+                <div class="flex gap-3 mb-10">
+                    <div class="dot" id="dot-1"></div>
+                    <div class="dot" id="dot-2"></div>
+                    <div class="dot" id="dot-3"></div>
+                    <div class="dot" id="dot-4"></div>
+                </div>
 
-        <!-- LIVE TRANSCRIPTION BOX -->
-        <div id="live-transcript" class="w-full max-w-md bg-black/30 border border-white/20 rounded-xl p-4 min-h-[80px] text-2xl font-medium text-white mb-4 hidden backdrop-blur-sm shadow-inner break-words items-center justify-center text-center">
-            <!-- Live text will appear here -->
-        </div>
-
-        <div id="speech-status" class="text-xl md:text-2xl font-medium text-white mb-8 min-h-[80px] flex items-center justify-center"></div>
-
-        <button onclick="goToScreen(1)" class="bg-transparent border-4 border-white text-white px-8 py-2 rounded-full font-bold text-lg hover:bg-white hover:text-[var(--primary-red)] transition shadow-lg">Try Passcode Again</button>
-    </div>
-
-    <!-- SCREEN 3: SURPRISE QUESTION -->
-    <div id="screen-3" class="screen flex-col lg:flex-row items-center justify-between p-0 min-h-screen relative overflow-hidden bg-[var(--primary-red)]">
-        <button onclick="goToScreen(1)" class="absolute top-6 left-6 bg-white text-[var(--primary-red)] px-6 py-2 rounded-full font-bold text-lg hover:bg-gray-100 z-50 shadow-lg">Back</button>
-
-        <div class="hidden lg:block absolute left-[8%] top-0 bottom-0 w-[30%] max-w-[420px] shadow-2xl z-0" style="background-image: url('https://daisifystudio.my.canva.site/_assets/media/2775b866c46061621f540e0fbd2ee7fb.jpg'); background-size: cover; background-position: center; background-repeat: repeat;"></div>
-        <div class="block lg:hidden absolute inset-0 opacity-40 z-0" style="background-image: url('https://daisifystudio.my.canva.site/_assets/media/2775b866c46061621f540e0fbd2ee7fb.jpg'); background-size: cover;"></div>
-
-        <div class="w-full lg:w-1/2 h-[50vh] lg:h-screen flex items-center justify-center relative z-10 pt-16 lg:pt-0 pl-0 lg:pl-[2%]">
-            <div class="relative w-[110vw] lg:w-[65vw] max-w-[1100px] flex items-center justify-center floating z-10">
-                <img src="heart.png" class="w-full h-auto object-contain drop-shadow-2xl z-10 scale-125 lg:scale-110" alt="Golden Heart Locket" onerror="this.src='https://daisifystudio.my.canva.site/_assets/media/ab1a223cfd1133df15a88873bcd1412f.png'">
+                <!-- Authentic Keypad Grid -->
+                <div class="grid grid-cols-3 gap-x-6 gap-y-5 mb-8">
+                    <button onclick="pressKey('1')" class="keypad-btn"><u>1</u></button>
+                    <button onclick="pressKey('2')" class="keypad-btn"><u>2</u></button>
+                    <button onclick="pressKey('3')" class="keypad-btn"><u>3</u></button>
+                    <button onclick="pressKey('4')" class="keypad-btn"><u>4</u></button>
+                    <button onclick="pressKey('5')" class="keypad-btn"><u>5</u></button>
+                    <button onclick="pressKey('6')" class="keypad-btn"><u>6</u></button>
+                    <button onclick="pressKey('7')" class="keypad-btn"><u>7</u></button>
+                    <button onclick="pressKey('8')" class="keypad-btn"><u>8</u></button>
+                    <button onclick="pressKey('9')" class="keypad-btn"><u>9</u></button>
+                    <button onclick="pressKey('*')" class="keypad-btn pt-3 text-5xl">*</button>
+                    <button onclick="pressKey('0')" class="keypad-btn"><u>0</u></button>
+                    <button onclick="pressKey('#')" class="keypad-btn text-4xl">#</button>
+                </div>
+                
+                <button onclick="checkPasscode()" class="bg-[#F6DFDF] text-[var(--primary-red)] px-14 py-3 rounded-full text-3xl font-bold shadow-lg hover:bg-white transition hover:scale-105">Enter</button>
             </div>
         </div>
 
-        <div class="w-full lg:w-1/2 flex flex-col items-center justify-center z-20 pb-12 lg:pb-0 pr-0 lg:pr-[10%] text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white tracking-wide">I have little<br>surprise for you.<br>Wanna see it ?</h1>
-            <img src="https://daisifystudio.my.canva.site/_assets/video/b15cd53ea5249003ea0c8176e6ecad65.gif" class="w-48 mb-6 drop-shadow-xl" alt="Cute Bears">
-            <div class="flex gap-6">
-                <button onclick="goToScreen(9)" class="bg-white text-[var(--primary-red)] px-10 py-3 rounded-full font-bold text-3xl shadow-xl hover:scale-110 transition">YES</button>
-                <button id="no-btn" class="bg-white text-[var(--primary-red)] px-10 py-3 rounded-full font-bold text-3xl shadow-xl hover:scale-110 transition" onclick="goToScreen(4)">NO</button>
+        <!-- SCREEN 2: WRONG PASSCODE WITH SPEECH RECOGNITION -->
+        <div id="screen-2" class="screen flex-col items-center justify-center p-6 text-center relative">
+            <h1 class="pixel-font text-2xl md:text-3xl text-white mb-6">wrong passcode :[</h1>
+            
+            <div class="relative mb-6">
+                <h2 class="text-5xl md:text-7xl font-black text-white border-8 border-white p-6 rounded-2xl opacity-80 tracking-widest" style="border-style: dashed;">LOCKED</h2>
             </div>
-        </div>
-    </div>
 
-    <!-- SCREEN 4: HOW DARE YOU -->
-    <div id="screen-4" class="screen flex-col items-center justify-center p-6 text-center relative">
-        <h1 class="text-5xl md:text-7xl font-bold mb-10 tracking-wide text-white">How dare you click NO !</h1>
-        
-        <div class="flex items-center gap-4 mb-12 relative">
-            <button onclick="goToScreen(3)" class="bg-white text-[var(--primary-red)] px-12 py-3 rounded-full font-bold text-3xl hover:scale-105 transition shadow-lg">
-                <span class="border-b-4 border-[var(--primary-red)] pb-1 inline-block mt-1">TRY AGAIN</span>
+            <p class="handwriting text-3xl md:text-4xl text-[#F8DE9B] mb-8">Say the magic words to unlock...<br>"I love you"</p>
+
+            <button onclick="startListening()" class="bg-[#F8DE9B] text-[var(--primary-red)] px-8 py-3 rounded-full font-bold text-2xl hover:scale-105 transition shadow-xl mb-6 flex items-center gap-3 mx-auto">
+                <svg class="w-6 h-6 animate-pulse" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd"></path></svg>
+                Tap to Speak
             </button>
-            
-            <div class="absolute -right-[80px] top-4 flex items-center gap-1.5 transform rotate-6 pointer-events-none">
-                <div class="flex gap-1.5 transform translate-y-2">
-                    <div class="w-2 h-2 bg-black rounded-sm"></div>
-                    <div class="w-2 h-2 bg-black rounded-sm"></div>
-                    <div class="w-2 h-2 bg-black rounded-sm"></div>
+
+            <!-- LIVE TRANSCRIPTION BOX -->
+            <div id="live-transcript" class="w-full max-w-md bg-black/30 border border-white/20 rounded-xl p-4 min-h-[80px] text-2xl font-medium text-white mb-4 hidden backdrop-blur-sm shadow-inner break-words items-center justify-center text-center">
+                <!-- Live text will appear here -->
+            </div>
+
+            <div id="speech-status" class="text-xl md:text-2xl font-medium text-white mb-8 min-h-[80px] flex items-center justify-center"></div>
+
+            <button onclick="goToScreen(1)" class="bg-transparent border-4 border-white text-white px-8 py-2 rounded-full font-bold text-lg hover:bg-white hover:text-[var(--primary-red)] transition shadow-lg">Try Passcode Again</button>
+        </div>
+
+        <!-- SCREEN 3: SURPRISE QUESTION -->
+        <div id="screen-3" class="screen flex-col lg:flex-row items-center justify-between p-0 min-h-screen relative overflow-hidden bg-[var(--primary-red)]">
+            <button onclick="goToScreen(1)" class="absolute top-6 left-6 bg-white text-[var(--primary-red)] px-6 py-2 rounded-full font-bold text-lg hover:bg-gray-100 z-50 shadow-lg">Back</button>
+
+            <div class="hidden lg:block absolute left-[8%] top-0 bottom-0 w-[30%] max-w-[420px] shadow-2xl z-0" style="background-image: url('https://daisifystudio.my.canva.site/_assets/media/2775b866c46061621f540e0fbd2ee7fb.jpg'); background-size: cover; background-position: center; background-repeat: repeat;"></div>
+            <div class="block lg:hidden absolute inset-0 opacity-40 z-0" style="background-image: url('https://daisifystudio.my.canva.site/_assets/media/2775b866c46061621f540e0fbd2ee7fb.jpg'); background-size: cover;"></div>
+
+            <div class="w-full lg:w-1/2 h-[50vh] lg:h-screen flex items-center justify-center relative z-10 pt-16 lg:pt-0 pl-0 lg:pl-[2%]">
+                <div class="relative w-[110vw] lg:w-[65vw] max-w-[1100px] flex items-center justify-center floating z-10">
+                    <img src="heart.png" class="w-full h-auto object-contain drop-shadow-2xl z-10 scale-125 lg:scale-110" alt="Golden Heart Locket" onerror="this.src='https://daisifystudio.my.canva.site/_assets/media/ab1a223cfd1133df15a88873bcd1412f.png'">
                 </div>
-                <svg width="45" height="45" viewBox="0 0 24 24" fill="white" stroke="black" stroke-width="1.5" class="transform -rotate-45">
-                    <path d="M4 2 L4 22 L11 15 L16 23 L20 21 L15 13 L22 13 Z" stroke-linejoin="miter" stroke-miterlimit="4"/>
-                </svg>
+            </div>
+
+            <div class="w-full lg:w-1/2 flex flex-col items-center justify-center z-20 pb-12 lg:pb-0 pr-0 lg:pr-[10%] text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white tracking-wide">I have little<br>surprise for you.<br>Wanna see it ?</h1>
+                <img src="https://daisifystudio.my.canva.site/_assets/video/b15cd53ea5249003ea0c8176e6ecad65.gif" class="w-48 mb-6 drop-shadow-xl" alt="Cute Bears">
+                <div class="flex gap-6">
+                    <button onclick="goToScreen(9)" class="bg-white text-[var(--primary-red)] px-10 py-3 rounded-full font-bold text-3xl shadow-xl hover:scale-110 transition">YES</button>
+                    <button id="no-btn" class="bg-white text-[var(--primary-red)] px-10 py-3 rounded-full font-bold text-3xl shadow-xl hover:scale-110 transition" onclick="goToScreen(4)">NO</button>
+                </div>
             </div>
         </div>
-        <img src="https://daisifystudio.my.canva.site/_assets/video/bbd46bb7feaae5804098b672ba73435b.gif" class="w-[350px] drop-shadow-xl" alt="Biting Bear">
-    </div>
 
-    <!-- SCREEN 5: OPEN LETTER (Textured Embroidered Layered Layout) -->
-    <div id="screen-5" class="screen flex-col items-center justify-center p-6 text-center relative overflow-x-hidden bg-[var(--primary-red)]" style="background-image: radial-gradient(circle at center, transparent 0%, #7a151d 150%), repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 12px), repeating-linear-gradient(-45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 12px); box-shadow: inset 0 0 100px rgba(0,0,0,0.5);">
-        <button onclick="goToScreen(9)" class="absolute top-6 left-6 bg-white text-[var(--primary-red)] px-6 py-2 rounded-full font-bold text-lg hover:bg-gray-100 z-50 shadow-lg">Back to Gifts</button>
-
-        <div class="relative w-full max-w-7xl h-auto min-h-[700px] flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-8 mt-16 lg:mt-0 px-4">
+        <!-- SCREEN 4: HOW DARE YOU -->
+        <div id="screen-4" class="screen flex-col items-center justify-center p-6 text-center relative">
+            <h1 class="text-5xl md:text-7xl font-bold mb-10 tracking-wide text-white">How dare you click NO !</h1>
             
-            <!-- Left Element: The Doily & Note Card -->
-            <div class="relative w-[340px] h-[380px] z-10 transform -rotate-6 hover:rotate-0 transition-transform duration-500 flex items-center justify-center lg:-translate-x-6">
-                <!-- SVG Lace Doily -->
-                <svg class="absolute w-[450px] h-[450px] text-white opacity-95 drop-shadow-2xl" viewBox="0 0 200 200" fill="currentColor">
-                    <circle cx="100" cy="100" r="85" stroke="currentColor" stroke-width="20" stroke-dasharray="0 22" stroke-linecap="round"/>
-                    <circle cx="100" cy="100" r="76" />
-                </svg>
+            <div class="flex items-center gap-4 mb-12 relative">
+                <button onclick="goToScreen(3)" class="bg-white text-[var(--primary-red)] px-12 py-3 rounded-full font-bold text-3xl hover:scale-105 transition shadow-lg">
+                    <span class="border-b-4 border-[var(--primary-red)] pb-1 inline-block mt-1">TRY AGAIN</span>
+                </button>
                 
-                <!-- White Textured Note Card -->
-                <div class="relative bg-[#FDFBF7] p-8 pb-12 shadow-2xl w-[320px] h-auto flex flex-col justify-center text-center border border-gray-200 z-10" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%220.15%22/%3E%3C/svg%3E');">
-                    <!-- Heart Pin -->
-                    <div class="absolute top-4 left-4 text-[#A31D27] text-2xl drop-shadow-md transform -rotate-12">❤️</div>
+                <div class="absolute -right-[80px] top-4 flex items-center gap-1.5 transform rotate-6 pointer-events-none">
+                    <div class="flex gap-1.5 transform translate-y-2">
+                        <div class="w-2 h-2 bg-black rounded-sm"></div>
+                        <div class="w-2 h-2 bg-black rounded-sm"></div>
+                        <div class="w-2 h-2 bg-black rounded-sm"></div>
+                    </div>
+                    <svg width="45" height="45" viewBox="0 0 24 24" fill="white" stroke="black" stroke-width="1.5" class="transform -rotate-45">
+                        <path d="M4 2 L4 22 L11 15 L16 23 L20 21 L15 13 L22 13 Z" stroke-linejoin="miter" stroke-miterlimit="4"/>
+                    </svg>
+                </div>
+            </div>
+            <img src="https://daisifystudio.my.canva.site/_assets/video/bbd46bb7feaae5804098b672ba73435b.gif" class="w-[350px] drop-shadow-xl" alt="Biting Bear">
+        </div>
+
+        <!-- SCREEN 5: OPEN LETTER (Textured Embroidered Layered Layout) -->
+        <div id="screen-5" class="screen flex-col items-center justify-center p-6 text-center relative overflow-x-hidden bg-[var(--primary-red)]" style="background-image: radial-gradient(circle at center, transparent 0%, #7a151d 150%), repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 12px), repeating-linear-gradient(-45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 12px); box-shadow: inset 0 0 100px rgba(0,0,0,0.5);">
+            <button onclick="goToScreen(9)" class="absolute top-6 left-6 bg-white text-[var(--primary-red)] px-6 py-2 rounded-full font-bold text-lg hover:bg-gray-100 z-50 shadow-lg">Back to Gifts</button>
+
+            <div class="relative w-full max-w-7xl h-auto min-h-[700px] flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-8 mt-16 lg:mt-0 px-4">
+                
+                <!-- Left Element: The Doily & Note Card -->
+                <div class="relative w-[340px] h-[380px] z-10 transform -rotate-6 hover:rotate-0 transition-transform duration-500 flex items-center justify-center lg:-translate-x-6">
+                    <!-- SVG Lace Doily -->
+                    <svg class="absolute w-[450px] h-[450px] text-white opacity-95 drop-shadow-2xl" viewBox="0 0 200 200" fill="currentColor">
+                        <circle cx="100" cy="100" r="85" stroke="currentColor" stroke-width="20" stroke-dasharray="0 22" stroke-linecap="round"/>
+                        <circle cx="100" cy="100" r="76" />
+                    </svg>
                     
-                    <h2 class="handwriting text-5xl mb-4 mt-6 text-[#A31D27] font-bold">Happy 1st Anniversary</h2>
-                    <p class="handwriting text-3xl text-gray-800 leading-relaxed font-medium">Today is a reminder to celebrate love in its purest form the love.</p>
-                </div>
-            </div>
-
-            <!-- Middle Element: Two Sophisticated Embroidered Photostrips -->
-            <div class="relative flex gap-4 lg:gap-8 z-20 mt-8 lg:mt-0">
-                <!-- Photostrip 1 -->
-                <div class="relative w-[140px] lg:w-[160px] transform -rotate-3 hover:-rotate-0 transition-transform duration-500" style="z-index: 21;">
-                    <div class="p-3 pb-10 shadow-2xl flex flex-col gap-3 rounded-md" style="background-color: #fdfbf7; background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.7\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.2\'/%3E%3C/svg%3E'); border: 2px dashed #E6B125; box-shadow: 0 0 0 6px #fdfbf7, 0 0 0 8px #d4af37, 0 15px 25px rgba(0,0,0,0.5);">
-                        <img src="22.png" class="w-full aspect-square object-cover shadow-inner border border-black/10 rounded-sm filter sepia-[0.1]" alt="Memory 1" onerror="this.src='heart.png'">
-                        <img src="23.png" class="w-full aspect-square object-cover shadow-inner border border-black/10 rounded-sm filter sepia-[0.1]" alt="Memory 2" onerror="this.src='night.png'">
-                        <img src="32.png" class="w-full aspect-square object-cover shadow-inner border border-black/10 rounded-sm filter sepia-[0.1]" alt="Memory 3" onerror="this.src='heart.png'">
+                    <!-- White Textured Note Card -->
+                    <div class="relative bg-[#FDFBF7] p-8 pb-12 shadow-2xl w-[320px] h-auto flex flex-col justify-center text-center border border-gray-200 z-10" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%220.15%22/%3E%3C/svg%3E');">
+                        <!-- Heart Pin -->
+                        <div class="absolute top-4 left-4 text-[#A31D27] text-2xl drop-shadow-md transform -rotate-12">❤️</div>
+                        
+                        <h2 class="handwriting text-5xl mb-4 mt-6 text-[#A31D27] font-bold">Happy 1st Anniversary</h2>
+                        <p class="handwriting text-3xl text-gray-800 leading-relaxed font-medium">Today is a reminder to celebrate love in its purest form the love.</p>
                     </div>
                 </div>
 
-                <!-- Photostrip 2 -->
-                <div class="relative w-[140px] lg:w-[160px] transform rotate-6 hover:rotate-2 transition-transform duration-500 translate-y-6" style="z-index: 22;">
-                    <div class="p-3 pb-10 shadow-2xl flex flex-col gap-3 rounded-md" style="background-color: #fdfbf7; background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.7\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.2\'/%3E%3C/svg%3E'); border: 2px dashed #E6B125; box-shadow: 0 0 0 6px #fdfbf7, 0 0 0 8px #d4af37, 0 15px 25px rgba(0,0,0,0.5);">
-                        <img src="19.png" class="w-full aspect-square object-cover shadow-inner border border-black/10 rounded-sm filter sepia-[0.1]" alt="Memory 4" onerror="this.src='night.png'">
-                        <img src="27.png" class="w-full aspect-square object-cover shadow-inner border border-black/10 rounded-sm filter sepia-[0.1]" alt="Memory 5" onerror="this.src='heart.png'">
-                        <img src="1.png" class="w-full aspect-square object-cover shadow-inner border border-black/10 rounded-sm filter sepia-[0.1]" alt="Memory 6" onerror="this.src='night.png'">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Element: The Pink Envelope -->
-            <div class="relative w-[340px] md:w-[400px] h-[300px] z-30 cursor-pointer group lg:translate-x-6 mt-16 lg:mt-0" onclick="goToScreen(6)">
-                <!-- Back of envelope -->
-                <div class="absolute inset-0 bg-[#F8BBD0] shadow-2xl rounded-md"></div>
-                
-                <!-- The Letter inside -->
-                <div class="absolute left-[6%] right-[6%] bottom-8 h-[260px] bg-[#FFFBF0] flex flex-col items-center shadow-lg group-hover:-translate-y-16 transition-transform duration-500 perforated-edge z-10" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%220.15%22/%3E%3C/svg%3E');">
-                    <span class="font-bold text-3xl tracking-widest text-[#A31D27] border-b-4 border-[#A31D27] pb-1 mt-16 font-sans">OPEN LETTER</span>
-                </div>
-                
-                <!-- Left Flap -->
-                <div class="absolute inset-0 bg-[#F48FB1] z-20 drop-shadow-[2px_0_4px_rgba(0,0,0,0.1)]" style="clip-path: polygon(0 0, 50% 50%, 0 100%);"></div>
-                
-                <!-- Right Flap -->
-                <div class="absolute inset-0 bg-[#F48FB1] z-20 drop-shadow-[-2px_0_4px_rgba(0,0,0,0.1)]" style="clip-path: polygon(100% 0, 50% 50%, 100% 100%);"></div>
-                
-                <!-- Bottom Flap -->
-                <div class="absolute inset-0 bg-[#F06292] z-30 drop-shadow-[0_-3px_6px_rgba(0,0,0,0.15)]" style="clip-path: polygon(0 100%, 50% 55%, 100% 100%);"></div>
-                
-                <!-- Wax Seal -->
-                <div class="absolute left-1/2 top-[55%] transform -translate-x-1/2 -translate-y-1/2 w-[70px] h-[70px] bg-[#D81B60] rounded-full flex items-center justify-center shadow-xl border border-[#C2185B] z-40 group-hover:scale-110 transition-transform duration-300">
-                    <div class="w-[54px] h-[54px] rounded-full border-2 border-[#F48FB1]/60 flex items-center justify-center text-white text-3xl shadow-inner">
-                        🎀
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-
-    <!-- SCREEN 6: LONG LETTER -->
-    <div id="screen-6" class="screen flex-col items-center justify-center p-4 md:p-12 relative min-h-screen bg-[#FDF3F3]">
-        <button onclick="goToScreen(5)" class="absolute top-6 left-6 bg-[var(--primary-red)] text-white px-6 py-2 rounded-full font-bold text-lg hover:bg-red-800 z-50 shadow-lg">Back to Envelope</button>
-        <button onclick="goToScreen(9)" class="absolute top-6 right-6 bg-[var(--primary-red)] text-white px-6 py-2 rounded-full font-bold text-lg hover:bg-red-800 z-50 shadow-lg">Back to Gifts</button>
-
-        <div class="bg-[#FFFBF0] text-[#A31D27] p-10 md:p-[80px] rounded-xl shadow-2xl max-w-5xl w-full relative z-10 border border-[#A31D27]/20 mt-20 md:mt-0" 
-             style="background-image: repeating-linear-gradient(transparent, transparent 39px, rgba(163, 29, 39, 0.25) 39px, rgba(163, 29, 39, 0.25) 40px), url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%220.25%22/%3E%3C/svg%3E'); background-size: 100% 40px, 100% 100%; line-height: 40px;">
-            
-            <div class="handwriting text-[26px] md:text-[32px] leading-[40px] text-center font-bold px-2 md:px-4 relative z-10 drop-shadow-[0_1px_0_rgba(163,29,39,0.3)]">
-                
-                <img src="heart.png" class="float-none lg:float-right w-[250px] lg:w-[350px] mx-auto lg:ml-10 lg:mb-6 mt-4 object-contain drop-shadow-[0_20px_20px_rgba(0,0,0,0.3)] hover:scale-105 transition-transform duration-500" alt="Hug" onerror="this.src='night.png'">
-                
-                <span class="inline">
-happy 1st anniversary kake idk if it matters to you but today one month ago on 2 august at 12:23am we came into this spaceship of loveeeee 🫂
-
-It matter to me because i think day is like blessing to meeee, idk but i want you to know that i am only yoursss and you can share everything single thing with me idk about your success but i am always there with you in your lows 🫂🫂🫂🫂🫂🫂🫂🫂🥺🥺
-
-Whenever u feel sad i cant see u in stresss 
-I know this distance is a constraint between us butt believe me i will try my best to make you feel better..
-I LOVEEE UUUUUU KIRATTT 🫂🫂🫂🫂🫂🫂🫂♥️♥️♥️♥️♥️♥️♥️😘😘😘😘😘😘😘😘😘😘😘😘😘🥺🥺🥺🥺🥺🥺🥺🥺🫂🫂♥️♥️♥️♥️❤️❤️❤️❤️❤️
-
-I wish you get everything you dreamt off, i can be temporary but my support and love is permanent 🫂🥺
-</span><br><br>
-                <span class="inline">
-I pray you become successful in life and achieve all your goals with or without me no matterr!!! 
-</span><br><br>
-                <span class="inline">
-Luve uuu sooo much kakee sooooo muchhhhhhhhhh
-Babeji blesss uuuu ♥️♥️♥️♥️♥️😇😇😇😇😇
-
-Hope you stay happy and joyefull and whosoever make u feel stresssful or lowww
-Odi esi tesii even if its meee 🔪
-
-Loveeee uuuuu and khush rhoo ♥️🫂🫂</span>
-                
-                <div style="clear: both;"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- SCREEN 9: GIFTS MENU (No Back Button) -->
-    <div id="screen-9" class="screen flex-col items-center justify-center p-6 relative" style="background-image: url('https://daisifystudio.my.canva.site/_assets/media/aee189cd14501915222f4c44debe6d0a.jpg'); background-size: cover; color: var(--primary-red);">
-
-        <div class="bg-[#F8DE9B] px-12 py-4 mb-12 rounded-sm shadow-md border-l-4 border-r-4 border-[#E6B125] relative mt-16 md:mt-0">
-            <div class="absolute -left-3 top-1/2 transform -translate-y-1/2 w-6 h-6 rounded-full bg-[#E6B125]"></div>
-            <div class="absolute -right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 rounded-full bg-[#E6B125]"></div>
-            <h1 class="handwriting text-5xl font-bold text-center">select any gift</h1>
-        </div>
-
-        <div class="flex flex-col md:flex-row gap-12 mt-4 items-center">
-            <!-- GIFT 1: Letter -->
-            <div class="flex flex-col items-center gap-4 cursor-pointer hover:scale-110 transition duration-300" onclick="goToScreen(5)">
-                <img src="https://daisifystudio.my.canva.site/_assets/media/ef3a8c255b92b46ade981a14998beb6d.png" class="w-60 md:w-72 floating" alt="Gift 1">
-                <span class="bg-white px-8 py-2 rounded-full text-xl font-bold border-b-4 border-gray-300 shadow-md">Open Letter</span>
-            </div>
-            <!-- GIFT 2: 54 Pictures Grid Matrix Marquee -->
-            <div class="flex flex-col items-center gap-4 cursor-pointer hover:scale-110 transition duration-300" onclick="openMatrixGift()">
-                <img src="https://daisifystudio.my.canva.site/_assets/media/ef3a8c255b92b46ade981a14998beb6d.png" class="w-60 md:w-72 floating" style="animation-delay: 0.5s;" alt="Gift 2">
-                <span class="bg-white px-8 py-2 rounded-full text-xl font-bold border-b-4 border-gray-300 shadow-md">Memory Matrix</span>
-            </div>
-            <!-- GIFT 3: Date & 11 Reasons Combined -->
-            <div class="flex flex-col items-center gap-4 cursor-pointer hover:scale-110 transition duration-300" onclick="startCountdown()">
-                <img src="https://daisifystudio.my.canva.site/_assets/media/ef3a8c255b92b46ade981a14998beb6d.png" class="w-60 md:w-72 floating" style="animation-delay: 1s;" alt="Gift 3">
-                <span class="bg-white px-8 py-2 rounded-full text-xl font-bold border-b-4 border-gray-300 shadow-md">Our Story</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- SCREEN 10: INSTA REEL & 11 REASONS (Gift 3 Combo) -->
-    <div id="screen-10" class="screen flex-col items-center justify-start p-0 relative overflow-y-auto min-h-screen bg-[#EFAAAA]">
-        
-        <!-- FULL SCREEN COUNTDOWN OVERLAY -->
-        <div id="countdown-overlay" class="fixed inset-0 z-[200] flex items-center justify-center bg-[#A31D27]/90 backdrop-blur-md transition-opacity duration-500" style="display: none;">
-            <div id="countdown-number" class="text-white text-[150px] md:text-[250px] font-bold handwriting heartbeat drop-shadow-2xl px-12 min-w-[300px] text-center">3</div>
-        </div>
-
-        <!-- MAIN CONTENT (Starts Blurred) -->
-        <div id="story-content" class="w-full min-h-screen flex flex-col items-center justify-start p-6 md:p-12 relative blur-in">
-            <button onclick="goToScreen(9)" class="fixed top-6 left-6 bg-white text-[var(--primary-red)] px-6 py-2 rounded-full font-bold text-lg hover:bg-gray-100 z-[100] shadow-lg">Back to Gifts</button>
-
-            <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: linear-gradient(#A31D27 2px, transparent 2px), linear-gradient(90deg, #A31D27 2px, transparent 2px); background-size: 100px 100px;"></div>
-
-            <div class="flex flex-col lg:flex-row w-full max-w-6xl gap-12 mt-20 items-center lg:items-start z-10 pb-16">
-                
-                <!-- Left Side: Instagram Reel Frame -->
-                <div class="w-full lg:w-1/2 relative flex justify-center">
-                    <!-- Insta Phone Container (Increased max-width to 400px) -->
-                    <div class="relative w-full max-w-[400px] aspect-[9/16] rounded-[40px] border-[8px] border-black bg-black shadow-2xl overflow-hidden z-10 flex flex-col justify-end">
-                        
-                        <!-- iPhone Notch (Slightly wider to match bigger phone) -->
-                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-[150px] h-[28px] bg-black rounded-b-[20px] z-30"></div>
-                        
-                        <!-- The Video (Audio enabled, muted attribute removed) -->
-                        <!-- NOTE: Will fallback to a placeholder text if love.mp4 is missing in the same folder -->
-                        <video id="reel-video" src="love.mp4" class="absolute inset-0 w-full h-full object-cover z-0" loop playsinline onerror="this.outerHTML='<div class=\'absolute inset-0 bg-gray-800 flex items-center justify-center text-white p-6 text-center text-sm\'>Please place love.mp4 in this folder for the video to play! ❤️</div>'"></video>
-                        
-                        <!-- Top Gradient -->
-                        <div class="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-black/60 to-transparent z-10 pointer-events-none"></div>
-                        
-                        <!-- Bottom Gradient -->
-                        <div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent z-10 pointer-events-none"></div>
-
-                        <!-- Header -->
-                        <div class="absolute top-8 left-5 right-5 z-20 flex items-center justify-between text-white">
-                            <div class="font-bold text-xl drop-shadow-md">Reels</div>
-                            <svg class="w-6 h-6 drop-shadow-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                <!-- Middle Element: Two Sophisticated Embroidered Photostrips -->
+                <div class="relative flex gap-4 lg:gap-8 z-20 mt-8 lg:mt-0">
+                    <!-- Photostrip 1 -->
+                    <div class="relative w-[140px] lg:w-[160px] transform -rotate-3 hover:-rotate-0 transition-transform duration-500" style="z-index: 21;">
+                        <div class="p-3 pb-10 shadow-2xl flex flex-col gap-3 rounded-md" style="background-color: #fdfbf7; background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.7\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.2\'/%3E%3C/svg%3E'); border: 2px dashed #E6B125; box-shadow: 0 0 0 6px #fdfbf7, 0 0 0 8px #d4af37, 0 15px 25px rgba(0,0,0,0.5);">
+                            <img src="22.png" class="w-full aspect-square object-cover shadow-inner border border-black/10 rounded-sm filter sepia-[0.1]" alt="Memory 1" onerror="this.src='heart.png'">
+                            <img src="23.png" class="w-full aspect-square object-cover shadow-inner border border-black/10 rounded-sm filter sepia-[0.1]" alt="Memory 2" onerror="this.src='night.png'">
+                            <img src="32.png" class="w-full aspect-square object-cover shadow-inner border border-black/10 rounded-sm filter sepia-[0.1]" alt="Memory 3" onerror="this.src='heart.png'">
                         </div>
-                        
-                        <!-- Caption & User Area -->
-                        <div class="relative z-20 p-5 w-full text-white pb-6 pr-16">
-                            <!-- User Row -->
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="w-10 h-10 rounded-full border-2 border-pink-500 overflow-hidden bg-gray-300 p-[2px]">
-                                    <!-- Profile Pic changed to dog.png -->
-                                    <img src="dog.png" class="w-full h-full rounded-full object-cover" onerror="this.src='heart.png'">
+                    </div>
+
+                    <!-- Photostrip 2 -->
+                    <div class="relative w-[140px] lg:w-[160px] transform rotate-6 hover:rotate-2 transition-transform duration-500 translate-y-6" style="z-index: 22;">
+                        <div class="p-3 pb-10 shadow-2xl flex flex-col gap-3 rounded-md" style="background-color: #fdfbf7; background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.7\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.2\'/%3E%3C/svg%3E'); border: 2px dashed #E6B125; box-shadow: 0 0 0 6px #fdfbf7, 0 0 0 8px #d4af37, 0 15px 25px rgba(0,0,0,0.5);">
+                            <img src="19.png" class="w-full aspect-square object-cover shadow-inner border border-black/10 rounded-sm filter sepia-[0.1]" alt="Memory 4" onerror="this.src='night.png'">
+                            <img src="27.png" class="w-full aspect-square object-cover shadow-inner border border-black/10 rounded-sm filter sepia-[0.1]" alt="Memory 5" onerror="this.src='heart.png'">
+                            <img src="1.png" class="w-full aspect-square object-cover shadow-inner border border-black/10 rounded-sm filter sepia-[0.1]" alt="Memory 6" onerror="this.src='night.png'">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Element: The Pink Envelope -->
+                <div class="relative w-[340px] md:w-[400px] h-[300px] z-30 cursor-pointer group lg:translate-x-6 mt-16 lg:mt-0" onclick="goToScreen(6)">
+                    <!-- Back of envelope -->
+                    <div class="absolute inset-0 bg-[#F8BBD0] shadow-2xl rounded-md"></div>
+                    
+                    <!-- The Letter inside -->
+                    <div class="absolute left-[6%] right-[6%] bottom-8 h-[260px] bg-[#FFFBF0] flex flex-col items-center shadow-lg group-hover:-translate-y-16 transition-transform duration-500 perforated-edge z-10" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%220.15%22/%3E%3C/svg%3E');">
+                        <span class="font-bold text-3xl tracking-widest text-[#A31D27] border-b-4 border-[#A31D27] pb-1 mt-16 font-sans">OPEN LETTER</span>
+                    </div>
+                    
+                    <!-- Left Flap -->
+                    <div class="absolute inset-0 bg-[#F48FB1] z-20 drop-shadow-[2px_0_4px_rgba(0,0,0,0.1)]" style="clip-path: polygon(0 0, 50% 50%, 0 100%);"></div>
+                    
+                    <!-- Right Flap -->
+                    <div class="absolute inset-0 bg-[#F48FB1] z-20 drop-shadow-[-2px_0_4px_rgba(0,0,0,0.1)]" style="clip-path: polygon(100% 0, 50% 50%, 100% 100%);"></div>
+                    
+                    <!-- Bottom Flap -->
+                    <div class="absolute inset-0 bg-[#F06292] z-30 drop-shadow-[0_-3px_6px_rgba(0,0,0,0.15)]" style="clip-path: polygon(0 100%, 50% 55%, 100% 100%);"></div>
+                    
+                    <!-- Wax Seal -->
+                    <div class="absolute left-1/2 top-[55%] transform -translate-x-1/2 -translate-y-1/2 w-[70px] h-[70px] bg-[#D81B60] rounded-full flex items-center justify-center shadow-xl border border-[#C2185B] z-40 group-hover:scale-110 transition-transform duration-300">
+                        <div class="w-[54px] h-[54px] rounded-full border-2 border-[#F48FB1]/60 flex items-center justify-center text-white text-3xl shadow-inner">
+                            🎀
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- SCREEN 6: LONG LETTER -->
+        <div id="screen-6" class="screen flex-col items-center justify-center p-4 md:p-12 relative min-h-screen bg-[#FDF3F3]">
+            <button onclick="goToScreen(5)" class="absolute top-6 left-6 bg-[var(--primary-red)] text-white px-6 py-2 rounded-full font-bold text-lg hover:bg-red-800 z-50 shadow-lg">Back to Envelope</button>
+            <button onclick="goToScreen(9)" class="absolute top-6 right-6 bg-[var(--primary-red)] text-white px-6 py-2 rounded-full font-bold text-lg hover:bg-red-800 z-50 shadow-lg">Back to Gifts</button>
+
+            <div class="bg-[#FFFBF0] text-[#A31D27] p-10 md:p-[80px] rounded-xl shadow-2xl max-w-5xl w-full relative z-10 border border-[#A31D27]/20 mt-20 md:mt-0" 
+                 style="background-image: repeating-linear-gradient(transparent, transparent 39px, rgba(163, 29, 39, 0.25) 39px, rgba(163, 29, 39, 0.25) 40px), url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%220.25%22/%3E%3C/svg%3E'); background-size: 100% 40px, 100% 100%; line-height: 40px;">
+                
+                <div class="handwriting text-[26px] md:text-[32px] leading-[40px] text-center font-bold px-2 md:px-4 relative z-10 drop-shadow-[0_1px_0_rgba(163,29,39,0.3)]">
+                    
+                    <img src="heart.png" class="float-none lg:float-right w-[250px] lg:w-[350px] mx-auto lg:ml-10 lg:mb-6 mt-4 object-contain drop-shadow-[0_20px_20px_rgba(0,0,0,0.3)] hover:scale-105 transition-transform duration-500" alt="Hug" onerror="this.src='night.png'">
+                    
+                    <span class="inline">
+    happy 1st anniversary kake idk if it matters to you but today one month ago on 2 august at 12:23am we came into this spaceship of loveeeee 🫂
+
+    It matter to me because i think day is like blessing to meeee, idk but i want you to know that i am only yoursss and you can share everything single thing with me idk about your success but i am always there with you in your lows 🫂🫂🫂🫂🫂🫂🫂🫂🥺🥺
+
+    Whenever u feel sad i cant see u in stresss 
+    I know this distance is a constraint between us butt believe me i will try my best to make you feel better..
+    I LOVEEE UUUUUU KIRATTT 🫂🫂🫂🫂🫂🫂🫂♥️♥️♥️♥️♥️♥️♥️😘😘😘😘😘😘😘😘😘😘😘😘😘🥺🥺🥺🥺🥺🥺🥺🥺🫂🫂♥️♥️♥️♥️❤️❤️❤️❤️❤️
+
+    I wish you get everything you dreamt off, i can be temporary but my support and love is permanent 🫂🥺
+    </span><br><br>
+                    <span class="inline">
+    I pray you become successful in life and achieve all your goals with or without me no matterr!!! 
+    </span><br><br>
+                    <span class="inline">
+    Luve uuu sooo much kakee sooooo muchhhhhhhhhh
+    Babeji blesss uuuu ♥️♥️♥️♥️♥️😇😇😇😇😇
+
+    Hope you stay happy and joyefull and whosoever make u feel stresssful or lowww
+    Odi esi tesii even if its meee 🔪
+
+    Loveeee uuuuu and khush rhoo ♥️🫂🫂</span>
+                    
+                    <div style="clear: both;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 9: GIFTS MENU (No Back Button) -->
+        <div id="screen-9" class="screen flex-col items-center justify-center p-6 relative" style="background-image: url('https://daisifystudio.my.canva.site/_assets/media/aee189cd14501915222f4c44debe6d0a.jpg'); background-size: cover; color: var(--primary-red);">
+
+            <div class="bg-[#F8DE9B] px-12 py-4 mb-12 rounded-sm shadow-md border-l-4 border-r-4 border-[#E6B125] relative mt-16 md:mt-0">
+                <div class="absolute -left-3 top-1/2 transform -translate-y-1/2 w-6 h-6 rounded-full bg-[#E6B125]"></div>
+                <div class="absolute -right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 rounded-full bg-[#E6B125]"></div>
+                <h1 class="handwriting text-5xl font-bold text-center">select any gift</h1>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-12 mt-4 items-center">
+                <!-- GIFT 1: Letter -->
+                <div class="flex flex-col items-center gap-4 cursor-pointer hover:scale-110 transition duration-300" onclick="goToScreen(5)">
+                    <img src="https://daisifystudio.my.canva.site/_assets/media/ef3a8c255b92b46ade981a14998beb6d.png" class="w-60 md:w-72 floating" alt="Gift 1">
+                    <span class="bg-white px-8 py-2 rounded-full text-xl font-bold border-b-4 border-gray-300 shadow-md">Open Letter</span>
+                </div>
+                <!-- GIFT 2: 54 Pictures Grid Matrix Marquee -->
+                <div class="flex flex-col items-center gap-4 cursor-pointer hover:scale-110 transition duration-300" onclick="openMatrixGift()">
+                    <img src="https://daisifystudio.my.canva.site/_assets/media/ef3a8c255b92b46ade981a14998beb6d.png" class="w-60 md:w-72 floating" style="animation-delay: 0.5s;" alt="Gift 2">
+                    <span class="bg-white px-8 py-2 rounded-full text-xl font-bold border-b-4 border-gray-300 shadow-md">Memory Matrix</span>
+                </div>
+                <!-- GIFT 3: Date & 11 Reasons Combined -->
+                <div class="flex flex-col items-center gap-4 cursor-pointer hover:scale-110 transition duration-300" onclick="startCountdown()">
+                    <img src="https://daisifystudio.my.canva.site/_assets/media/ef3a8c255b92b46ade981a14998beb6d.png" class="w-60 md:w-72 floating" style="animation-delay: 1s;" alt="Gift 3">
+                    <span class="bg-white px-8 py-2 rounded-full text-xl font-bold border-b-4 border-gray-300 shadow-md">Our Story</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 10: INSTA REEL & 11 REASONS (Gift 3 Combo) -->
+        <div id="screen-10" class="screen flex-col items-center justify-start p-0 relative overflow-y-auto min-h-screen bg-[#EFAAAA]">
+            
+            <!-- FULL SCREEN COUNTDOWN OVERLAY -->
+            <div id="countdown-overlay" class="fixed inset-0 z-[200] flex items-center justify-center bg-[#A31D27]/90 backdrop-blur-md transition-opacity duration-500" style="display: none;">
+                <div id="countdown-number" class="text-white text-[150px] md:text-[250px] font-bold handwriting heartbeat drop-shadow-2xl px-12 min-w-[300px] text-center">3</div>
+            </div>
+
+            <!-- MAIN CONTENT (Starts Blurred) -->
+            <div id="story-content" class="w-full min-h-screen flex flex-col items-center justify-start p-6 md:p-12 relative blur-in">
+                <button onclick="goToScreen(9)" class="fixed top-6 left-6 bg-white text-[var(--primary-red)] px-6 py-2 rounded-full font-bold text-lg hover:bg-gray-100 z-[100] shadow-lg">Back to Gifts</button>
+
+                <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: linear-gradient(#A31D27 2px, transparent 2px), linear-gradient(90deg, #A31D27 2px, transparent 2px); background-size: 100px 100px;"></div>
+
+                <div class="flex flex-col lg:flex-row w-full max-w-6xl gap-12 mt-20 items-center lg:items-start z-10 pb-16">
+                    
+                    <!-- Left Side: Instagram Reel Frame -->
+                    <div class="w-full lg:w-1/2 relative flex justify-center">
+                        <!-- Insta Phone Container (Increased max-width to 400px) -->
+                        <div class="relative w-full max-w-[400px] aspect-[9/16] rounded-[40px] border-[8px] border-black bg-black shadow-2xl overflow-hidden z-10 flex flex-col justify-end">
+                            
+                            <!-- iPhone Notch (Slightly wider to match bigger phone) -->
+                            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-[150px] h-[28px] bg-black rounded-b-[20px] z-30"></div>
+                            
+                            <!-- The Video (Audio enabled, muted attribute removed) -->
+                            <!-- NOTE: Will fallback to a placeholder text if love.mp4 is missing in the same folder -->
+                            <video id="reel-video" src="love.mp4" class="absolute inset-0 w-full h-full object-cover z-0" loop playsinline onerror="this.outerHTML='<div class=\'absolute inset-0 bg-gray-800 flex items-center justify-center text-white p-6 text-center text-sm\'>Please place love.mp4 in this folder for the video to play! ❤️</div>'"></video>
+                            
+                            <!-- Top Gradient -->
+                            <div class="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-black/60 to-transparent z-10 pointer-events-none"></div>
+                            
+                            <!-- Bottom Gradient -->
+                            <div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent z-10 pointer-events-none"></div>
+
+                            <!-- Header -->
+                            <div class="absolute top-8 left-5 right-5 z-20 flex items-center justify-between text-white">
+                                <div class="font-bold text-xl drop-shadow-md">Reels</div>
+                                <svg class="w-6 h-6 drop-shadow-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            </div>
+                            
+                            <!-- Caption & User Area -->
+                            <div class="relative z-20 p-5 w-full text-white pb-6 pr-16">
+                                <!-- User Row -->
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-10 h-10 rounded-full border-2 border-pink-500 overflow-hidden bg-gray-300 p-[2px]">
+                                        <!-- Profile Pic changed to dog.png -->
+                                        <img src="dog.png" class="w-full h-full rounded-full object-cover" onerror="this.src='heart.png'">
+                                    </div>
+                                    <span class="font-bold text-[15px] drop-shadow-lg shadow-black">high.on.caffeine.11</span>
+                                    <button class="border border-white/60 rounded-md px-3 py-1 text-xs font-semibold backdrop-blur-sm">Follow</button>
                                 </div>
-                                <span class="font-bold text-[15px] drop-shadow-lg shadow-black">high.on.caffeine.11</span>
-                                <button class="border border-white/60 rounded-md px-3 py-1 text-xs font-semibold backdrop-blur-sm">Follow</button>
+                                
+                                <!-- Caption text -->
+                                <p class="text-sm font-medium drop-shadow-md mb-3 opacity-95">11 reasons why I love you so much... 🥺❤️ Happy Anniversary baby!</p>
+                                
+                                <!-- Audio track bubble -->
+                                <div class="flex items-center gap-2 text-xs font-medium bg-white/20 w-max px-3 py-1.5 rounded-full backdrop-blur-md">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"></path></svg>
+                                    high.on.caffeine.11 • Original Audio
+                                </div>
                             </div>
-                            
-                            <!-- Caption text -->
-                            <p class="text-sm font-medium drop-shadow-md mb-3 opacity-95">11 reasons why I love you so much... 🥺❤️ Happy Anniversary baby!</p>
-                            
-                            <!-- Audio track bubble -->
-                            <div class="flex items-center gap-2 text-xs font-medium bg-white/20 w-max px-3 py-1.5 rounded-full backdrop-blur-md">
-                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"></path></svg>
-                                high.on.caffeine.11 • Original Audio
-                            </div>
-                        </div>
 
-                        <!-- Right Side Actions Column -->
-                        <div class="absolute bottom-6 right-3 z-20 flex flex-col items-center gap-5 drop-shadow-lg text-white">
-                            <div class="flex flex-col items-center gap-1 cursor-pointer hover:scale-110 transition-transform text-red-500">
-                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg>
-                                <span class="text-[11px] font-bold text-white">11k</span>
-                            </div>
-                            <div class="flex flex-col items-center gap-1 cursor-pointer hover:scale-110 transition-transform">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                                <span class="text-[11px] font-bold">1.1k</span>
-                            </div>
-                            <div class="flex flex-col items-center gap-1 cursor-pointer hover:scale-110 transition-transform">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                                <span class="text-[11px] font-bold">Share</span>
-                            </div>
-                            <div class="flex flex-col items-center mt-1 cursor-pointer">
-                                <div class="w-1 h-1 bg-white rounded-full mb-1"></div>
-                                <div class="w-1 h-1 bg-white rounded-full mb-1"></div>
-                                <div class="w-1 h-1 bg-white rounded-full"></div>
-                            </div>
-                            <!-- Audio thumbnail changed to dog.png -->
-                            <div class="w-8 h-8 rounded-md border-2 border-white overflow-hidden mt-3 cursor-pointer rotating-disc">
-                                <img src="dog.png" class="w-full h-full object-cover" onerror="this.src='night.png'">
+                            <!-- Right Side Actions Column -->
+                            <div class="absolute bottom-6 right-3 z-20 flex flex-col items-center gap-5 drop-shadow-lg text-white">
+                                <div class="flex flex-col items-center gap-1 cursor-pointer hover:scale-110 transition-transform text-red-500">
+                                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg>
+                                    <span class="text-[11px] font-bold text-white">11k</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1 cursor-pointer hover:scale-110 transition-transform">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                                    <span class="text-[11px] font-bold">1.1k</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1 cursor-pointer hover:scale-110 transition-transform">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                                    <span class="text-[11px] font-bold">Share</span>
+                                </div>
+                                <div class="flex flex-col items-center mt-1 cursor-pointer">
+                                    <div class="w-1 h-1 bg-white rounded-full mb-1"></div>
+                                    <div class="w-1 h-1 bg-white rounded-full mb-1"></div>
+                                    <div class="w-1 h-1 bg-white rounded-full"></div>
+                                </div>
+                                <!-- Audio thumbnail changed to dog.png -->
+                                <div class="w-8 h-8 rounded-md border-2 border-white overflow-hidden mt-3 cursor-pointer rotating-disc">
+                                    <img src="dog.png" class="w-full h-full object-cover" onerror="this.src='night.png'">
+                                </div>
                             </div>
                         </div>
+                        
+                        <!-- Little stars floating near the reel -->
+                        <div class="absolute -top-10 -right-10 text-[100px] text-[#A6C4E5] opacity-80 z-0 handwriting font-bold leading-none transform rotate-12 pointer-events-none drop-shadow-xl">11</div>
+                        <div class="absolute top-10 -left-6 text-[#F4D03F] text-5xl z-20 floating">★</div>
+                        <div class="absolute bottom-20 -right-8 text-[#F4D03F] text-4xl z-20 floating" style="animation-delay: 1s;">★</div>
                     </div>
-                    
-                    <!-- Little stars floating near the reel -->
-                    <div class="absolute -top-10 -right-10 text-[100px] text-[#A6C4E5] opacity-80 z-0 handwriting font-bold leading-none transform rotate-12 pointer-events-none drop-shadow-xl">11</div>
-                    <div class="absolute top-10 -left-6 text-[#F4D03F] text-5xl z-20 floating">★</div>
-                    <div class="absolute bottom-20 -right-8 text-[#F4D03F] text-4xl z-20 floating" style="animation-delay: 1s;">★</div>
-                </div>
 
-                <!-- Right Side: 11 Reasons -->
-                <div class="w-full lg:w-1/2 text-left relative z-10 bg-white/70 p-8 md:p-12 rounded-3xl backdrop-blur-md border-4 border-white shadow-2xl">
-                    <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-8 text-[var(--primary-red)] text-center lg:text-left">
-                        <span class="elegant italic text-3xl block text-[#A31D27] mb-2">11 Reasons Why I</span>
-                        LOVE YOU
-                    </h1>
-                
-                    <p style="color: #A31D27;">You always ask me na why I love you!!? These are the few reasons</p>
+                    <!-- Right Side: 11 Reasons -->
+                    <div class="w-full lg:w-1/2 text-left relative z-10 bg-white/70 p-8 md:p-12 rounded-3xl backdrop-blur-md border-4 border-white shadow-2xl">
+                        <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-8 text-[var(--primary-red)] text-center lg:text-left">
+                            <span class="elegant italic text-3xl block text-[#A31D27] mb-2">11 Reasons Why I</span>
+                            LOVE YOU
+                        </h1>
                     
-                    <ul class="text-lg md:text-xl space-y-5 font-medium text-gray-900" id="reasons-list">
-                        <!-- Reasons injected by JS -->
-                    </ul>
+                        <p style="color: #A31D27;">You always ask me na why I love you!!? These are the few reasons</p>
+                        
+                        <ul class="text-lg md:text-xl space-y-5 font-medium text-gray-900" id="reasons-list">
+                            <!-- Reasons injected by JS -->
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- SCREEN 12: 54 PICTURES MARQUEE (Gift 2) -->
-    <div id="screen-12" class="screen flex-col items-center justify-start p-0 relative min-h-screen overflow-x-hidden" style="background-color: var(--primary-red); background-image: radial-gradient(circle at center, transparent 0%, #7a151d 150%), repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 12px), repeating-linear-gradient(-45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 12px); box-shadow: inset 0 0 100px rgba(0,0,0,0.5);">
-        
-        <!-- Hidden audio element for the matrix screen -->
-        <video id="matrix-audio" src="tuhi.mp4" style="display: none;" loop playsinline></video>
-        
-        <!-- MAIN CONTENT (Starts Blurred) -->
-        <div id="matrix-wrapper" class="w-full min-h-screen flex flex-col items-center justify-start pt-20 blur-in relative transition-all duration-1000">
-            <button onclick="goToScreen(9)" class="fixed top-6 left-6 bg-white text-[var(--primary-red)] px-6 py-2 rounded-full font-bold text-lg hover:bg-gray-100 z-[100] shadow-lg">Back to Gifts</button>
+        <!-- SCREEN 12: 54 PICTURES MARQUEE (Gift 2) -->
+        <div id="screen-12" class="screen flex-col items-center justify-start p-0 relative min-h-screen overflow-x-hidden" style="background-color: var(--primary-red); background-image: radial-gradient(circle at center, transparent 0%, #7a151d 150%), repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 12px), repeating-linear-gradient(-45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 12px); box-shadow: inset 0 0 100px rgba(0,0,0,0.5);">
             
-            <!-- DOWNLOAD PDF BUTTON -->
-            <button id="pdf-btn" onclick="downloadPDF()" class="fixed top-6 right-6 bg-white text-[var(--primary-red)] px-6 py-2 rounded-full font-bold text-lg hover:bg-gray-100 z-[100] shadow-lg flex items-center gap-2 transition-all">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                <span>Download PDF</span>
-            </button>
+            <!-- Hidden audio element for the matrix screen -->
+            <video id="matrix-audio" src="tuhi.mp4" style="display: none;" loop playsinline></video>
+            
+            <!-- MAIN CONTENT (Starts Blurred) -->
+            <div id="matrix-wrapper" class="w-full min-h-screen flex flex-col items-center justify-start pt-20 blur-in relative transition-all duration-1000">
+                <button onclick="goToScreen(9)" class="fixed top-6 left-6 bg-white text-[var(--primary-red)] px-6 py-2 rounded-full font-bold text-lg hover:bg-gray-100 z-[100] shadow-lg">Back to Gifts</button>
+                
+                <!-- DOWNLOAD PDF BUTTON -->
+                <button id="pdf-btn" onclick="downloadPDF()" class="fixed top-6 right-6 bg-white text-[var(--primary-red)] px-6 py-2 rounded-full font-bold text-lg hover:bg-gray-100 z-[100] shadow-lg flex items-center gap-2 transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    <span>Download PDF</span>
+                </button>
 
-            <h1 class="elegant text-6xl md:text-8xl text-white font-bold mb-4 mt-6 drop-shadow-lg text-center">Our Picture Matrix</h1>
-            <p class="elegant italic text-[#F8DE9B] text-2xl md:text-3xl mb-12 tracking-wide">54 moments of us...</p>
+                <h1 class="elegant text-6xl md:text-8xl text-white font-bold mb-4 mt-6 drop-shadow-lg text-center">Our Picture Matrix</h1>
+                <p class="elegant italic text-[#F8DE9B] text-2xl md:text-3xl mb-12 tracking-wide">54 moments of us...</p>
 
-            <!-- Container for dynamically injected 54 pictures and marquee strips -->
-            <div id="matrix-gallery" class="w-full pb-20"></div>
+                <!-- Container for dynamically injected 54 pictures and marquee strips -->
+                <div id="matrix-gallery" class="w-full pb-20"></div>
+            </div>
         </div>
-    </div>
+    </div> <!-- END OF MAIN APP WRAPPER -->
 
     <script>
         // --- Main Background Music Autoplay Logic ---
@@ -643,6 +664,9 @@ Loveeee uuuuu and khush rhoo ♥️🫂🫂</span>
         
         // Listen for any click to bypass browser autoplay policies and start the background music
         document.addEventListener('click', () => {
+            // Check if the user is on mobile (warning screen), if so, do NOT autoplay music
+            if (window.innerWidth < 1024) return; 
+            
             if (!userHasInteracted) {
                 userHasInteracted = true;
                 const mainMusic = document.getElementById('main-bg-music');
